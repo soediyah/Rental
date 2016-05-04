@@ -13,4 +13,3 @@ http://code.ciphertrick.com/2015/02/27/create-restful-api-using-node-js-express-
 * Install dependencies : npm install  
 * Start the server : node server.js
 
-nambahin readme
