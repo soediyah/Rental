@@ -14,7 +14,7 @@ module.exports = {
 			"Rental":""
 		};
 		
-		connection.query("SELECT * from tbl_telepon",function(err, rows, fields){
+		connection.query("SELECT * from tbl_pvot",function(err, rows, fields){
 			if(rows.length != 0){
 				data["error"] = 0;
 				data["Rental"] = rows;
@@ -26,37 +26,37 @@ module.exports = {
 		});
 	},
 	post: function(req,res){
-	var no_telepon = req.body.no_telepon;
-	var no_ktp = req.body.no_ktp;
+	var no_booking = req.body.no_booking;
+	var id_denda = req.body.id_denda;
 	var data = {
 		"error":1,
 		"Rental":""
 	};
 	if(!!nama_kategori && !!gambar_kategori){
-		connection.query("INSERT INTO tbl_telepon VALUES('',?,?)",[no_telepon, no_ktp],function(err, rows, fields){
+		connection.query("INSERT INTO tbl_pvot VALUES('',?,?)",[no_booking, id_denda],function(err, rows, fields){
 			if(!!err){
 				data["Rental"] = "Error Adding data";
 			}else{
 				data["error"] = 0;
-				data["Rental"] = "tbl_telepon Added Successfully";
+				data["Rental"] = "tbl_pvot Added Successfully";
 			}
 			res.json(data);
 		});
 	}else{
-		data["Rental"] = "Please provide all required data (i.e : no_telepon, no_ktp)";
+		data["Rental"] = "Please provide all required data (i.e : no_booking, id_denda)";
 		res.json(data);
 	}
 },
 	put: function(req,res){
-	var id_telepon = req.params.id_telepon;
-	var no_telepon = req.body.no_telepon;
-	var no_ktp = req.body.no_ktp;
+	var id_pvot = req.params.id_pvot;
+	var no_booking = req.body.no_booking;
+	var id_denda = req.body.id_denda;
 	var data = {
 		"error":1,
 		"Rental":""
 	};
-	if(!!id_telepon && !!nama_kategori && !!gambar_kategori){
-		connection.query("UPDATE tbl_telepon SET no_telepon=?, no_ktp=? WHERE id_telepon=?",[no_telepon,no_ktp,id_telepon],function(err, rows, fields){
+	if(!!id_pvot && !!no_booking && !!id_denda){
+		connection.query("UPDATE tbl_pvot SET no_booking=?, id_denda=? WHERE id_pvot=?",[id_pvot,no_booking,id_denda],function(err, rows, fields){
 			if(!!err){
 				data["Rental"] = "Error Updating data";
 			}else{
@@ -66,28 +66,28 @@ module.exports = {
 			res.json(data);
 		});
 	}else{
-		data["Rental"] = "Please provide all required data (i.e : id_telepon, no_telepon, no_ktp)";
+		data["Rental"] = "Please provide all required data (i.e : id_pvot, no_booking, id_denda)";
 		res.json(data);
 	}
 },
 	delete: function(req,res){
-	var id_telepon = req.params.id_telepon;
+	var id_pvot = req.params.id_pvot;
 	var data = {
 		"error":1,
 		"Rental":""
 	};
 	if(!!id_telepon){
-		connection.query("DELETE FROM tbl_telepon WHERE id_telepon=?",[id_telepon],function(err, rows, fields){
+		connection.query("DELETE FROM tbl_pvot WHERE id_pvot=?",[id_pvot],function(err, rows, fields){
 			if(!!err){
 				data["Rental"] = "Error deleting data";
 			}else{
 				data["error"] = 0;
-				data["Rental"] = "Delete tbl_telepon Successfully";
+				data["Rental"] = "Delete tbl_pvot Successfully";
 			}
 			res.json(data);
 		});
 	}else{
-		data["Rental"] = "Please provide all required data (i.e : id_telepon )";
+		data["Rental"] = "Please provide all required data (i.e : id_pvot )";
 		res.json(data);
 	}
 }
