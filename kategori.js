@@ -49,15 +49,15 @@ module.exports = {
 	}
 },
 	put: function(req,res){
-	var id = req.params.id;
+	var id_kategori = req.params.id_kategori;
 	var nama_kategori = req.body.nama_kategori;
 	var gambar_kategori = req.body.gambar_kategori;
 	var data = {
 		"error":1,
 		"Rental":""
 	};
-	if(!!id && !!nama_kategori && !!gambar_kategori){
-		connection.query("UPDATE tbl_kategori SET nama_kategori=?, gambar_kategori=? WHERE id=?",[nama_kategori,gambar_kategori,id],function(err, rows, fields){
+	if(!!id_kategori && !!nama_kategori && !!gambar_kategori){
+		connection.query("UPDATE tbl_kategori SET nama_kategori=?, gambar_kategori=? WHERE id_kategori=?",[nama_kategori,gambar_kategori,id],function(err, rows, fields){
 			if(!!err){
 				data["Rental"] = "Error Updating data";
 			}else{
@@ -67,18 +67,18 @@ module.exports = {
 			res.json(data);
 		});
 	}else{
-		data["Rental"] = "Please provide all required data (i.e : id, nama_kategori, gambar_kategori)";
+		data["Rental"] = "Please provide all required data (i.e : id_kategori, nama_kategori, gambar_kategori)";
 		res.json(data);
 	}
 },
 	delete: function(req,res){
-	var id = req.params.id;
+	var id_kategori = req.params.id_kategori;
 	var data = {
 		"error":1,
 		"Rental":""
 	};
 	if(!!id){
-		connection.query("DELETE FROM tbl_kategori WHERE id=?",[id],function(err, rows, fields){
+		connection.query("DELETE FROM tbl_kategori WHERE id_kategori=?",[id_kategori],function(err, rows, fields){
 			if(!!err){
 				data["Rental"] = "Error deleting data";
 			}else{
@@ -88,7 +88,7 @@ module.exports = {
 			res.json(data);
 		});
 	}else{
-		data["Rental"] = "Please provide all required data (i.e : id )";
+		data["Rental"] = "Please provide all required data (i.e : id_kategori )";
 		res.json(data);
 	}
 }
