@@ -17,6 +17,7 @@ var kategoriController = require('./kategori');
 var dendaController = require('./denda');
 var teleponController = require('./telepon');
 var pvotController = require('./pvot');
+var alamatController = require('./alamat')
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -75,6 +76,12 @@ app.get('/tbl_pvot', pvotController.get);
 app.post('/tbl_pvot', pvotController.post);
 app.put('/tbl_pvot/:id_pvot', pvotController.put);
 app.delete('/tbl_pvot/:id_pvot', pvotController.delete);
+
+//tbl_alamat
+app.get('/tbl_alamat', alamatController.get);
+app.post('/tbl_alamat', alamatController.post);
+app.put('/tbl_alamat/:id_alamat', alamatController.put);
+app.delete('/tbl_alamat/:id_alamat', alamatController.delete);
 
 http.listen(1999,function(){
 	console.log("Connected & Listen to port 1999");
