@@ -57,7 +57,7 @@ module.exports = {
 		"Rental":""
 	};
 	if(!!id_kategori && !!nama_kategori && !!gambar_kategori){
-		connection.query("UPDATE tbl_kategori SET nama_kategori=?, gambar_kategori=? WHERE id_kategori=?",[nama_kategori,gambar_kategori,id],function(err, rows, fields){
+		connection.query("UPDATE tbl_kategori SET nama_kategori=?, gambar_kategori=? WHERE id_kategori=?",[nama_kategori,gambar_kategori,id_kategori],function(err, rows, fields){
 			if(!!err){
 				data["Rental"] = "Error Updating data";
 			}else{
@@ -77,7 +77,7 @@ module.exports = {
 		"error":1,
 		"Rental":""
 	};
-	if(!!id){
+	if(!!id_kategori){
 		connection.query("DELETE FROM tbl_kategori WHERE id_kategori=?",[id_kategori],function(err, rows, fields){
 			if(!!err){
 				data["Rental"] = "Error deleting data";
