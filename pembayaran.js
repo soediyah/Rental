@@ -44,7 +44,7 @@ module.exports = {
 			res.json(data);
 		});
 	}else{
-		data["Rental"] = "Please provide all required data (i.e : nama_pegawai, email_pegawai, password_pegawai)";
+		data["Rental"] = "Please provide all required data (i.e : harga_sewa, total_denda, tbl_pembayaran, id_pegawai)";
 		res.json(data);
 	}
 },
@@ -69,7 +69,7 @@ module.exports = {
 			res.json(data);
 		});
 	}else{
-		data["Rental"] = "Please provide all required data (i.e : id, nama_pegawai, email_pegawai, password_pegawai)";
+		data["Rental"] = "Please provide all required data (i.e : id, harga_sewa, total_denda, tbl_pembayaran, id_pegawai)";
 		res.json(data);
 	}
 },
