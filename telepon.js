@@ -48,15 +48,15 @@ module.exports = {
 	}
 },
 	put: function(req,res){
-	var id = req.params.id;
+	var id_telepon = req.params.id_telepon;
 	var no_telepon = req.body.no_telepon;
 	var no_ktp = req.body.no_ktp;
 	var data = {
 		"error":1,
 		"Rental":""
 	};
-	if(!!id && !!nama_kategori && !!gambar_kategori){
-		connection.query("UPDATE tbl_telepon SET no_telepon=?, no_ktp=? WHERE id=?",[no_telepon,no_ktp,id],function(err, rows, fields){
+	if(!!id_telepon && !!nama_kategori && !!gambar_kategori){
+		connection.query("UPDATE tbl_telepon SET no_telepon=?, no_ktp=? WHERE id_telepon=?",[no_telepon,no_ktp,id_telepon],function(err, rows, fields){
 			if(!!err){
 				data["Rental"] = "Error Updating data";
 			}else{
@@ -66,18 +66,18 @@ module.exports = {
 			res.json(data);
 		});
 	}else{
-		data["Rental"] = "Please provide all required data (i.e : id, no_telepon, no_ktp)";
+		data["Rental"] = "Please provide all required data (i.e : id_telepon, no_telepon, no_ktp)";
 		res.json(data);
 	}
 },
 	delete: function(req,res){
-	var id = req.params.id;
+	var id_telepon = req.params.id_telepon;
 	var data = {
 		"error":1,
 		"Rental":""
 	};
-	if(!!id){
-		connection.query("DELETE FROM tbl_telepon WHERE id=?",[id],function(err, rows, fields){
+	if(!!id_telepon){
+		connection.query("DELETE FROM tbl_telepon WHERE id_telepon=?",[id_telepon],function(err, rows, fields){
 			if(!!err){
 				data["Rental"] = "Error deleting data";
 			}else{
@@ -87,7 +87,7 @@ module.exports = {
 			res.json(data);
 		});
 	}else{
-		data["Rental"] = "Please provide all required data (i.e : id )";
+		data["Rental"] = "Please provide all required data (i.e : id_telepon )";
 		res.json(data);
 	}
 }
