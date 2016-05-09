@@ -12,6 +12,7 @@ var connection = mysql.createConnection({
 var pegawaiController = require('./pegawai');
 var customerController = require('./customer');
 var penyewaanController = require('./penyewaan');
+var kategoriController = require('./kategori');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -40,6 +41,13 @@ app.get('/tbl_penyewaan', penyewaanController.get);
 app.post('/tbl_penyewaan', penyewaanController.post);
 app.put('/tbl_penyewaan/:id', penyewaanController.put);
 app.delete('/tbl_penyewaan/:id', penyewaanController.delete);
+
+//tbl_kategori
+app.get('/tbl_kategori', kategoriController.get);
+app.post('/tbl_kategori', kategoriController.post);
+app.put('/tbl_kategori/:id', kategoriController.put);
+app.delete('/tbl_kategori/:id', kategoriController.delete);
+
 
 http.listen(1999,function(){
 	console.log("Connected & Listen to port 1999");
