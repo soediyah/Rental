@@ -7,8 +7,6 @@ var connection = mysql.createConnection({
 	database : 'rental',
 });
 
-console.log(connection);
-
 module.exports = {
 	get: function(req,res){
 		
