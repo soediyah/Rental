@@ -15,6 +15,7 @@ var penyewaanController = require('./penyewaan');
 var pembayaranController = require('./pembayaran');
 var kategoriController = require('./kategori');
 var dendaController = require('./denda');
+var teleponController = require('./telepon');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -47,8 +48,8 @@ app.delete('/tbl_penyewaan/:id', penyewaanController.delete);
 //tbl_pembayaran
 app.get('/tbl_pembayaran', pembayaranController.get);
 app.post('/tbl_pembayaran', pembayaranController.post);
-app.put('/tbl_pembayaran/:id', pembayaranController.put);
-app.delete('/tbl_pembayaran/:id', pembayaranController.delete);
+app.put('/tbl_pembayaran/:no_booking', pembayaranController.put);
+app.delete('/tbl_pembayaran/:no_booking', pembayaranController.delete);
 
 //tbl_kategori
 app.get('/tbl_kategori', kategoriController.get);
@@ -61,6 +62,13 @@ app.get('/tbl_denda', dendaController.get);
 app.post('/tbl_denda', dendaController.post);
 app.put('/tbl_denda/:id_denda', dendaController.put);
 app.delete('/tbl_denda/:id_denda', dendaController.delete);
+
+//tbl_telepon
+app.get('/tbl_telepon', teleponController.get);
+app.post('/tbl_telepon', teleponController.post);
+app.put('/tbl_telepon/:id_telepon', teleponController.put);
+app.delete('/tbl_telepon/:id_telepon', teleponController.delete);
+
 
 http.listen(1999,function(){
 	console.log("Connected & Listen to port 1999");
