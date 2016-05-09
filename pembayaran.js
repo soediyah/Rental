@@ -49,7 +49,7 @@ module.exports = {
 	}
 },
 	put: function(req,res){
-	var id = req.params.id;
+	var no_booking = req.params.no_booking;
 	var harga_sewa = req.body.harga_sewa;
 	var total_denda = req.body.total_denda;
 	var tgl_pembayaran = req.body.tgl_pembayaran;
@@ -58,8 +58,8 @@ module.exports = {
 		"error":1,
 		"Rental":""
 	};
-	if(!!id && !!harga_sewa && !!total_denda && !!tgl_pembayaran && !!id_pegawai){
-		connection.query("UPDATE tbl_pembayaran SET harga_sewa=?, total_denda=?, tgl_pembayaran=?, id_pegawai=? WHERE id=?",[harga_sewa,total_denda,tgl_pembayaran,id_pegawai,id],function(err, rows, fields){
+	if(!!no_booking && !!harga_sewa && !!total_denda && !!tgl_pembayaran && !!id_pegawai){
+		connection.query("UPDATE tbl_pembayaran SET harga_sewa=?, total_denda=?, tgl_pembayaran=?, id_pegawai=? WHERE no_booking=?",[harga_sewa,total_denda,tgl_pembayaran,id_pegawai,no_booking],function(err, rows, fields){
 			if(!!err){
 				data["Rental"] = "Error Updating data";
 			}else{
@@ -69,18 +69,18 @@ module.exports = {
 			res.json(data);
 		});
 	}else{
-		data["Rental"] = "Please provide all required data (i.e : id, harga_sewa, total_denda, tbl_pembayaran, id_pegawai)";
+		data["Rental"] = "Please provide all required data (i.e : no_booking, harga_sewa, total_denda, tbl_pembayaran, id_pegawai)";
 		res.json(data);
 	}
 },
 	delete: function(req,res){
-	var id = req.params.id;
+	var no_booking = req.params.no_booking;
 	var data = {
 		"error":1,
 		"Rental":""
 	};
 	if(!!id){
-		connection.query("DELETE FROM tbl_pembayaran WHERE id=?",[id],function(err, rows, fields){
+		connection.query("DELETE FROM tbl_pembayaran WHERE no_booking=?",[no_booking],function(err, rows, fields){
 			if(!!err){
 				data["Rental"] = "Error deleting data";
 			}else{

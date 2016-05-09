@@ -14,6 +14,7 @@ var customerController = require('./customer');
 var penyewaanController = require('./penyewaan');
 var pembayaranController = require('./pembayaran');
 var kategoriController = require('./kategori');
+var dendaController = require('./denda');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -52,9 +53,14 @@ app.delete('/tbl_pembayaran/:id', pembayaranController.delete);
 //tbl_kategori
 app.get('/tbl_kategori', kategoriController.get);
 app.post('/tbl_kategori', kategoriController.post);
-app.put('/tbl_kategori/:id', kategoriController.put);
-app.delete('/tbl_kategori/:id', kategoriController.delete);
+app.put('/tbl_kategori/:id_kategori', kategoriController.put);
+app.delete('/tbl_kategori/:id_kategori', kategoriController.delete);
 
+//tbl_denda
+app.get('/tbl_denda', dendaController.get);
+app.post('/tbl_denda', dendaController.post);
+app.put('/tbl_denda/:id_denda', dendaController.put);
+app.delete('/tbl_denda/:id_denda', dendaController.delete);
 
 http.listen(1999,function(){
 	console.log("Connected & Listen to port 1999");
