@@ -12,6 +12,7 @@ var connection = mysql.createConnection({
 var pegawaiController = require('./pegawai');
 var customerController = require('./customer');
 var penyewaanController = require('./penyewaan');
+var pembayaranController = require('./pembayaran');
 var kategoriController = require('./kategori');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -41,6 +42,12 @@ app.get('/tbl_penyewaan', penyewaanController.get);
 app.post('/tbl_penyewaan', penyewaanController.post);
 app.put('/tbl_penyewaan/:id', penyewaanController.put);
 app.delete('/tbl_penyewaan/:id', penyewaanController.delete);
+
+//tbl_pembayaran
+app.get('/tbl_pembayaran', pembayaranController.get);
+app.post('/tbl_pembayaran', pembayaranController.post);
+app.put('/tbl_pembayaran/:id', pembayaranController.put);
+app.delete('/tbl_pembayaran/:id', pembayaranController.delete);
 
 //tbl_kategori
 app.get('/tbl_kategori', kategoriController.get);
