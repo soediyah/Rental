@@ -25,7 +25,7 @@ module.exports = {
 
 	getid:
 	function (req,res){
-		model.get(function (error,result){
+		model.getid(function (error,result){
 			if(result.length == 0){
 				data["count"] = result.length;
 				data["status"] = "error";
