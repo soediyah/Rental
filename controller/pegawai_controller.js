@@ -22,6 +22,23 @@ module.exports = {
 			res.json(data);
 		});
 	},
+
+	getid:
+	function (req,res){
+		model.get(function (error,result){
+			if(result.length == 0){
+				data["count"] = result.length;
+				data["status"] = "error";
+				data["detail"] = error;
+			}
+			else{
+				data["count"] = result.length;
+				data["status"] = "success";
+				data["detail"] = result;
+			}
+			res.json(data);
+		});
+	},
 	post: 
 	function (req,res) {
 		model.post(req, function (error,result){
