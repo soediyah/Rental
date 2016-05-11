@@ -27,7 +27,7 @@ module.exports = {
 	},
 
 		getid: function(callback){
-		var id =req.params.id;
+		var Id =req.params.id;
 
 		knex.select().table('tbl_pegawai')
 		.join('tbl_customer', 'tbl_pegawai.id', 'tbl_customer.id_pegawai')
