@@ -2,42 +2,28 @@ var app   = require('express')();
 var http = require('http').Server(app);
 var mysql = require('mysql');
 var bodyParser = require("body-parser");
-var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'rental',
-});
 
-var pegawaiController = require('./pegawai');
-var customerController = require('./customer');
-var penyewaanController = require('./penyewaan');
-var pembayaranController = require('./pembayaran');
-var kategoriController = require('./kategori');
-var dendaController = require('./denda');
-var teleponController = require('./telepon');
-var pvotController = require('./pvot');
-<<<<<<< HEAD
-var itemController = require('./item');
-=======
-var alamatController = require('./alamat')
->>>>>>> c89428b7179aeed830c1fa14ff5a78a0f806a0db
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
-app.get('/',function(req,res){
-	var data = {
-		"Data":""
-	};
-	data["Data"] = "Welcome to Rental Mobil...";
-	res.json(data);
+//module exports
+var pegawaiController = require('./controller/pegawai_controller.js');
+
+app.get('/api',function(req,res){
+	res.send('Rental VPAS');
 });
 
 //tbl_pegawai
-app.get('/tbl_pegawai', pegawaiController.get);
-app.post('/tbl_pegawai', pegawaiController.post);
-app.put('/tbl_pegawai/:id', pegawaiController.put);
-app.delete('/tbl_pegawai/:id', pegawaiController.delete);
+app.get('/api/tbl_pegawai', pegawaiController.get);
+app.post('/api/tbl_pegawai', pegawaiController.post);
+app.put('/api/tbl_pegawai/:id', pegawaiController.put);
+app.delete('/api/tbl_pegawai/:id', pegawaiController.delete);
 
 //tbl_customer
 app.get('/tbl_customer', customerController.get);
