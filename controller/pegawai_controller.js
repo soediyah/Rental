@@ -1,97 +1,22 @@
-
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'rental',
-});
+var model = require('../model/pegawai.js');
+var data ={
+	"status" : "",
+	"detail" : ""
+};
 
 module.exports = {
-	get: function(req,res){
+	get: 
+	function(req,res){
+		model.get(function (error,result){
+			if(result.length == 0){
+				data["status"] = "error";
+				data["detail"] = error;
+			}
+			else{
+				data["status"] = "success";
+				data["detail"] = result;
+			}
+			res.json(data);
+		});
 		
-		var data = {
-			"error":1,
-			"Rental":""
-		};
 		
-		connection.query("SELECT * from tbl_pegawai",function(err, rows, fields){
-			if(rows.length != 0){
-				data["error"] = 0;
-				data["Rental"] = rows;
-				res.json(data);
-			}else{
-				data["Rental"] = 'No rental Found..';
-				res.json(data);
-			}
-		});
-	},
-	post: function(req,res){
-	var nama_pegawai = req.body.nama_pegawai;
-	var email_pegawai = req.body.email_pegawai;
-	var password_pegawai = req.body.password_pegawai;
-	var data = {
-		"error":1,
-		"Rental":""
-	};
-	if(!!nama_pegawai && !!email_pegawai && !!password_pegawai){
-		connection.query("INSERT INTO tbl_pegawai VALUES('',?,?,?)",[nama_pegawai,email_pegawai,password_pegawai],function(err, rows, fields){
-			if(!!err){
-				data["Rental"] = "Error Adding data";
-			}else{
-				data["error"] = 0;
-				data["Rental"] = "Tbl_pegawai Added Successfully";
-			}
-			res.json(data);
-		});
-	}else{
-		data["Rental"] = "Please provide all required data (i.e : nama_pegawai, email_pegawai, password_pegawai)";
-		res.json(data);
-	}
-},
-	put: function(req,res){
-	var id = req.params.id;
-	var nama_pegawai = req.body.nama_pegawai;
-	var email_pegawai = req.body.email_pegawai;
-	var password_pegawai = req.body.password_pegawai;
-	var data = {
-		"error":1,
-		"Rental":""
-	};
-	if(!!id && !!nama_pegawai && !!email_pegawai && !!password_pegawai){
-		connection.query("UPDATE tbl_pegawai SET nama_pegawai=?, email_pegawai=?, password_pegawai=? WHERE id=?",[nama_pegawai,email_pegawai,password_pegawai,id],function(err, rows, fields){
-			if(!!err){
-				data["Rental"] = "Error Updating data";
-			}else{
-				data["error"] = 0;
-				data["Rental"] = "Updated Tbl_pegawai Successfully";
-			}
-			res.json(data);
-		});
-	}else{
-		data["Rental"] = "Please provide all required data (i.e : id, nama_pegawai, email_pegawai, password_pegawai)";
-		res.json(data);
-	}
-},
-	delete: function(req,res){
-	var id = req.params.id;
-	var data = {
-		"error":1,
-		"Rental":""
-	};
-	if(!!id){
-		connection.query("DELETE FROM tbl_pegawai WHERE id=?",[id],function(err, rows, fields){
-			if(!!err){
-				data["Rental"] = "Error deleting data";
-			}else{
-				data["error"] = 0;
-				data["Rental"] = "Delete Tbl_pegawai Successfully";
-			}
-			res.json(data);
-		});
-	}else{
-		data["Rental"] = "Please provide all required data (i.e : id )";
-		res.json(data);
-	}
-}
-};
