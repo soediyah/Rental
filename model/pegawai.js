@@ -65,24 +65,25 @@ module.exports = {
 		var nama_pegawai = req.body.nama_pegawai;
 		var email_pegawai = req.body.email_pegawai;
 		var password_pegawai = req.body.password_pegawai;
-		var data = {
-			"error":1,
-			"Rental":""
-		};
-		if(!!id && !!nama_pegawai && !!email_pegawai && !!password_pegawai){
-			connection.query("UPDATE tbl_pegawai SET nama_pegawai=?, email_pegawai=?, password_pegawai=? WHERE id=?",[nama_pegawai,email_pegawai,password_pegawai,id],function(err, rows, fields){
-				if(!!err){
-					data["Rental"] = "Error Updating data";
-				}else{
-					data["error"] = 0;
-					data["Rental"] = "Updated Tbl_pegawai Successfully";
-				}
-				res.json(data);
-			});
-		}else{
-			data["Rental"] = "Please provide all required data (i.e : id, nama_pegawai, email_pegawai, password_pegawai)";
-			res.json(data);
-		}
+		
+		vara model = knex('tbl_pegawai')
+        .where('id',id)
+        .update({
+            'nip': Nip,
+            'password':Pass,
+            'nama':Nama,
+            'kelamin':Kelamin,
+            'agama':Agama,
+            'tgl_lahir':TglLahir,
+            'id_bagian':Idbagian
+      })
+         .then(function (rows){
+                 callback(null, rows);
+             })
+         .catch(function (err){
+                 callback(err)
+             }); 
+
 	},
 	delete: function(req,res){
 		var id = req.params.id;
