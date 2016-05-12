@@ -50,7 +50,6 @@ module.exports = {
 		.insert({
 			'nama_pegawai':Nama_pegawai,
 			'email_pegawai':Email_pegawai,
-			'password_pegawai':Password_pegawai
 		})
 		.then(function (rows){
 			callback(null, rows);
