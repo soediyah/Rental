@@ -14,7 +14,7 @@ app.use(function(req, res, next) {
 
 //module exports
 var pegawaiController = require('./controller/pegawai_controller.js');
-var customerController = require('./controller/customerController.js');
+var customerController = require('./controller/customer_controller.js');
 app.get('/api',function(req,res){
 	res.send('Rental VPAS');
 });
