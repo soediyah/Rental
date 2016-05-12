@@ -50,6 +50,7 @@ module.exports = {
 		.insert({
 			'nama_pegawai':Nama_pegawai,
 			'email_pegawai':Email_pegawai,
+			'password_pegawai':Password_pegawai
 		})
 		.then(function (rows){
 			callback(null, rows);
@@ -59,7 +60,7 @@ module.exports = {
 		})
 	},
 	
-	put: function(req,res){
+	put: function(req, callback){
 		var id = req.params.id;
 		var nama_pegawai = req.body.nama_pegawai;
 		var email_pegawai = req.body.email_pegawai;
@@ -68,9 +69,9 @@ module.exports = {
 		var model = knex('tbl_pegawai')
         .where('id',id)
         .update({
-           'nama_pegawai':Nama_pegawai,
-			'email_pegawai':Email_pegawai,
-			'password_pegawai':Password_pegawai
+           'nama_pegawai':nama_pegawai,
+			'email_pegawai':email_pegawai,
+			'password_pegawai':password_pegawai
       })
          .then(function (rows){
                  callback(null, rows);
@@ -80,17 +81,19 @@ module.exports = {
              }); 
 
 	},
-	delete: function(req,res){
-		var id = req.params.id;
-		var model = knex('tbl_pegawai')
-			.whereRaw("id = ?",[id])
-			.del()
-			.then(function)(rows){
-				callback(null, rows);
-			})
-			.catch(function (err)){
-				callback(err)
-			})
-		
+
+	delete: function (req, callback){
+		var Id = req.params.body
+   		var model = knex('tbl_pegawai')
+        .whereRaw("id = ?",[Id])
+        .delete()
+        model.then(function (rows){
+                callback(null, rows);
+            })
+        .catch(function (err){
+                callback(err)
+            }); 
+
 	}
-};
+
+}
