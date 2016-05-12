@@ -66,7 +66,7 @@ module.exports = {
 		var email_pegawai = req.body.email_pegawai;
 		var password_pegawai = req.body.password_pegawai;
 		
-		vara model = knex('tbl_pegawai')
+		var model = knex('tbl_pegawai')
         .where('id',id)
         .update({
             'nip': Nip,
