@@ -68,13 +68,9 @@ module.exports = {
 		var model = knex('tbl_pegawai')
         .where('id',id)
         .update({
-            'nip': Nip,
-            'password':Pass,
-            'nama':Nama,
-            'kelamin':Kelamin,
-            'agama':Agama,
-            'tgl_lahir':TglLahir,
-            'id_bagian':Idbagian
+           'nama_pegawai':Nama_pegawai,
+			'email_pegawai':Email_pegawai,
+			'password_pegawai':Password_pegawai
       })
          .then(function (rows){
                  callback(null, rows);
@@ -86,23 +82,15 @@ module.exports = {
 	},
 	delete: function(req,res){
 		var id = req.params.id;
-		var data = {
-			"error":1,
-			"Rental":""
-		};
-		if(!!id){
-			connection.query("DELETE FROM tbl_pegawai WHERE id=?",[id],function(err, rows, fields){
-				if(!!err){
-					data["Rental"] = "Error deleting data";
-				}else{
-					data["error"] = 0;
-					data["Rental"] = "Delete Tbl_pegawai Successfully";
-				}
-				res.json(data);
-			});
-		}else{
-			data["Rental"] = "Please provide all required data (i.e : id )";
-			res.json(data);
-		}
+		var model = knex('tbl_pegawai')
+			.whereRaw("id = ?",[id])
+			.del()
+			.then(function)(rows){
+				callback(null, rows);
+			})
+			.catch(function (err)){
+				callback(err)
+			})
+		
 	}
 };
