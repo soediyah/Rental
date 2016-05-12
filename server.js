@@ -15,6 +15,7 @@ app.use(function(req, res, next) {
 //module exports
 var pegawaiController = require('./controller/pegawai_controller.js');
 var customerController = require('./controller/customer_controller.js');
+var dendaController =  require('./controller/denda_controller.js');
 app.get('/api',function(req,res){
 	res.send('Rental VPAS');
 });
@@ -30,8 +31,15 @@ app.delete('/api/tbl_pegawai/:id', pegawaiController.delete);
 app.get('/api/tbl_customer', customerController.get);
 app.get('/api/tbl_customer/:no_ktp', customerController.getid)
 app.post('/api/tbl_customer', customerController.post);
-app.put('/api/tbl_customer', customerController.put);
+app.put('/api/tbl_customer/:no_ktp', customerController.put);
 app.delete('/api/tbl_customer/:no_ktp', customerController.delete);
+
+//tbl_denda
+app.get('/api/tbl_denda', dendaController.get);
+app.get('/api/tbl_denda/:id', dendaController.getid)
+app.post('/api/tbl_denda', dendaController.post);
+app.put('/api/tbl_denda/:id', dendaController.put);
+app.delete('/api/tbl_denda/:id', dendaController.delete);
 
 
 http.listen(1999,function(){
