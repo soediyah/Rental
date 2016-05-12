@@ -14,7 +14,7 @@ module.exports = {
 		var model = knex.select().table('tbl_customer')
 		.leftJoin('tbl_telepon', 'tbl_telepon.no_ktp', 'tbl_customer.no_ktp')
 		.select(`tbl_customer.no_ktp`,`nama_customer`,`id_pegawai`);
-		.then(function (rows){
+		model.then(function (rows){
 			callback(null, rows);
 		})
 		.catch(function (err){
