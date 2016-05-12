@@ -23,6 +23,7 @@ module.exports = {
 		});
 	},
 
+	
 	getid:
 	function (req,res){
 		model.getid(req.params.no_ktp, function (error,result){
@@ -78,7 +79,7 @@ module.exports = {
 
 	delete: 
 	function (req,res) {
-		model.delete(req.params.id, function (error,result){
+		model.delete(req.params.no_ktp, function (error,result){
 			if(result.length == 0){
 				data["count"] = result.length;
 				data["status"] = "error";

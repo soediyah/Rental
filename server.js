@@ -22,15 +22,16 @@ app.get('/api',function(req,res){
 //tbl_pegawai
 app.get('/api/tbl_pegawai/:id', pegawaiController.getid);
 app.get('/api/tbl_pegawai', pegawaiController.get);
-app.get('/api/tbl_pegawai/:id', pegawaiController.get);
 app.post('/api/tbl_pegawai', pegawaiController.post);
 app.put('/api/tbl_pegawai/:id', pegawaiController.put);
 app.delete('/api/tbl_pegawai/:id', pegawaiController.delete);
 
 //tbl_customer
 app.get('/api/tbl_customer', customerController.get);
+app.get('/api/tbl_customer/:no_ktp', customerController.getid)
 app.post('/api/tbl_customer', customerController.post);
-app.get('/api/tbl_customer/:id', customerController.getid);
+app.put('/api/tbl_customer', customerController.put);
+app.delete('/api/tbl_customer/:no_ktp', customerController.delete);
 
 
 http.listen(1999,function(){
