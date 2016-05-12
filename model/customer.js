@@ -23,11 +23,11 @@ module.exports = {
 
 	},
 
-	getid: function(Id, callback){
-		var model = knex.select().table('tbl_pegawai')
+	getid: function(no_ktp, callback){
+		var model = knex.select().table('tbl_customer')
 		.leftJoin('tbl_telepon', 'tbl_telepon.no_ktp', 'tbl_customer.no_ktp')
-		.whereRaw('tbl_customer.no_ktp = ?', [Id])
-		.select(`tbl_customer.no_ktp`,`nama_customer`,`id_pegawai`);
+		.whereRaw('tbl_customer.no_ktp = ?', [no_ktp])
+		.select(`tbl_customer.no_ktp`,`nama_customer`,`id_pegawai`)
 		model.then(function (rows){
 			callback(null, rows);
 		}, function (err){
