@@ -15,44 +15,36 @@ module.exports = {
 		.leftJoin('tbl_customer', 'tbl_pegawai.id', 'tbl_customer.id_pegawai')
 		.leftJoin('tbl_penyewaan', 'tbl_pegawai.id', 'tbl_penyewaan.id_pegawai')
 		.select(`tbl_pegawai.id`,`nama_pegawai`,`email_pegawai`,`password_pegawai`);
-		console.log(model.toString())
 		model.then(function (rows){
 			callback(null, rows);
 		})
 		.catch(function (err){
 			callback(err)
-			console.log(err)
 		});
 
 	},
 
 	getid: function(Id, callback){
-		console.log(Id)
 		var model = knex.select().table('tbl_pegawai')
 		.leftJoin('tbl_customer', 'tbl_pegawai.id', 'tbl_customer.id_pegawai')
 		.leftJoin('tbl_penyewaan', 'tbl_pegawai.id', 'tbl_penyewaan.id_pegawai')
 		.whereRaw('tbl_pegawai.id = ?', [Id])
 		.select(`tbl_pegawai.id`,`nama_pegawai`,`email_pegawai`,`password_pegawai`)
-		console.log(model.toString())
 		model.then(function (rows){
-			console.log('getid', rows)
 			callback(null, rows);
 		}, function (err){
 			callback(err)
-			console.log(err)
 		})
 		 
 	},
 
 	post: function(req, callback){
-		var Id = req.params.id;
 		var Nama_pegawai = req.body.nama_pegawai;
 		var Email_pegawai = req.body.email_pegawai;
 		var Password_pegawai = req.body.password_pegawai;
 
-		knex('tbl_pegawai')
+		var model = knex('tbl_pegawai')
 		.insert({
-			'id':Id,
 			'nama_pegawai':Nama_pegawai,
 			'email_pegawai':Email_pegawai,
 			'password_pegawai':Password_pegawai
