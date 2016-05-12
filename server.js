@@ -14,7 +14,7 @@ app.use(function(req, res, next) {
 
 //module exports
 var pegawaiController = require('./controller/pegawai_controller.js');
-
+var customerController = require('./controller/customer_controller.js');
 app.get('/api',function(req,res){
 	res.send('Rental VPAS');
 });
@@ -27,6 +27,8 @@ app.post('/api/tbl_pegawai', pegawaiController.post);
 app.put('/api/tbl_pegawai/:id', pegawaiController.put);
 app.delete('/api/tbl_pegawai/:id', pegawaiController.delete);
 
+//tbl_customer
+app.get('/api/tbl_customer', customerController.get);
 
 http.listen(1999,function(){
 	console.log("Connected & Listen to port 1999");
