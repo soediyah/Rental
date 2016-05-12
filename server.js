@@ -20,6 +20,7 @@ app.get('/api',function(req,res){
 });
 
 //tbl_pegawai
+app.get('/api/tbl_pegawai/:id', pegawaiController.getid);
 app.get('/api/tbl_pegawai', pegawaiController.get);
 app.post('/api/tbl_pegawai', pegawaiController.post);
 app.put('/api/tbl_pegawai/:id', pegawaiController.put);
