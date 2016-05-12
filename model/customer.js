@@ -32,6 +32,7 @@ module.exports = {
 			callback(null, rows);
 		}, function (err){
 			callback(err)
+
 		})
 		.catch(function (err){
 			callback(err)
