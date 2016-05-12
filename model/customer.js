@@ -23,7 +23,7 @@ module.exports = {
 
 	},
 
-<<<<<<< HEAD
+
 
 	getid: function(Id, callback){
 		var model = knex.select().table('tbl_pegawai')
@@ -31,13 +31,12 @@ module.exports = {
 		.whereRaw('tbl_customer.no_ktp = ?', [Id])
 		.select(`tbl_customer.no_ktp`,`nama_customer`,`id_pegawai`);
 
-=======
 	getid: function(no_ktp, callback){
 		var model = knex.select().table('tbl_customer')
 		.leftJoin('tbl_telepon', 'tbl_telepon.no_ktp', 'tbl_customer.no_ktp')
 		.whereRaw('tbl_customer.no_ktp = ?', [no_ktp])
 		.select(`tbl_customer.no_ktp`,`nama_customer`,`id_pegawai`)
->>>>>>> 8fa88edcd69090b0a5eea01ea2ee90fa7c96542d
+
 		model.then(function (rows){
 			callback(null, rows);
 		}, function (err){
