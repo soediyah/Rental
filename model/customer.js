@@ -40,15 +40,15 @@ module.exports = {
 	},
 
 	post: function(req, callback){
-		var Nama_pegawai = req.body.nama_pegawai;
-		var Email_pegawai = req.body.email_pegawai;
-		var Password_pegawai = req.body.password_pegawai;
+		var no_ktp = req.body.no_ktp;
+		var nama_customer = req.body.nama_customer;
+		var id_pegawai = req.body.id_pegawai;
 
 		var model = knex('tbl_pegawai')
 		.insert({
-			'nama_pegawai':Nama_pegawai,
-			'email_pegawai':Email_pegawai,
-			'password_pegawai':Password_pegawai
+			'no_ktp':no_ktp,
+			'nama_customer':nama_customer,
+			'id_pegawai':id_pegawai
 		})
 		.then(function (rows){
 			callback(null, rows);
