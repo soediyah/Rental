@@ -11,7 +11,7 @@ module.exports = {
 		model.get(function (error,result){
 			if(result.length == 0){
 				data["count"] = result.length;
-				data["status"] = "error";
+				data["status"] = "data kosong";
 				data["detail"] = error;
 			}
 			else{
@@ -25,8 +25,11 @@ module.exports = {
 
 	getid:
 	function (req,res){
-		model.getid(function (error,result){
+		console.log(model.getid)
+		model.getid(req.params.id, function (error,result){
+			console.log(result)
 			if(result.length == 0){
+
 				data["count"] = result.length;
 				data["status"] = "error";
 				data["detail"] = error;
