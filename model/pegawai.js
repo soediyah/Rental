@@ -69,9 +69,9 @@ module.exports = {
 		var model = knex('tbl_pegawai')
         .where('id',id)
         .update({
-           'nama_pegawai':Nama_pegawai,
-			'email_pegawai':Email_pegawai,
-			'password_pegawai':Password_pegawai
+           'nama_pegawai':nama_pegawai,
+			'email_pegawai':email_pegawai,
+			'password_pegawai':password_pegawai
       })
          .then(function (rows){
                  callback(null, rows);
