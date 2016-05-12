@@ -25,7 +25,7 @@ module.exports = {
 
 	getid:
 	function (req,res){
-		model.getid(req.params.id, function (error,result){
+		model.getid(req.params.no_ktp, function (error,result){
 			if(result.length == 0){
 
 				data["count"] = result.length;
