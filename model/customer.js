@@ -24,15 +24,15 @@ module.exports = {
 	},
 
 	getid: function(Id, callback){
-		var model = knex.select().table('tbl_pegawai')
-		.leftJoin('tbl_customer', 'tbl_pegawai.id', 'tbl_customer.id_pegawai')
-		.leftJoin('tbl_penyewaan', 'tbl_pegawai.id', 'tbl_penyewaan.id_pegawai')
-		.whereRaw('tbl_pegawai.id = ?', [Id])
-		.select(`tbl_pegawai.id`,`nama_pegawai`,`email_pegawai`,`password_pegawai`)
+		var model = knex.select().table('tbl_customer')
+		.leftJoin('tbl_telepon', 'tbl_telepon.no_ktp', 'tbl_customer.no_ktp')
+		.whereRaw('tbl_customer.no_ktp = ?', [Id])
+		.select(`tbl_customer.no_ktp`,`nama_customer`,`id_pegawai`)
 		model.then(function (rows){
 			callback(null, rows);
 		}, function (err){
 			callback(err)
+
 		})
 		.catch(function (err){
 			callback(err)
