@@ -24,20 +24,29 @@ module.exports = {
 
 	},
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5d254643e4e98f35d08a3ffc1b2c37297e4fd0b7
 	getid: function(Id, callback){
 		var model = knex.select().table('tbl_pegawai')
 		.leftJoin('tbl_customer', 'tbl_pegawai.id', 'tbl_customer.id_pegawai')
 		.leftJoin('tbl_penyewaan', 'tbl_pegawai.id', 'tbl_penyewaan.id_pegawai')
 		.whereRaw('tbl_pegawai.id = ?', [Id])
+<<<<<<< HEAD
 
 		
+=======
+>>>>>>> 5d254643e4e98f35d08a3ffc1b2c37297e4fd0b7
 		.select(`tbl_pegawai.id`,`nama_pegawai`,`email_pegawai`,`password_pegawai`)
 		model.then(function (rows){
 			callback(null, rows);
 		}, function (err){
 			callback(err)
 		})
+		.catch(function (err){
+			callback(err)
+		});
 		 
 	},
 
