@@ -29,6 +29,7 @@ app.delete('/api/tbl_pegawai/:id', pegawaiController.delete);
 
 //tbl_customer
 app.get('/api/tbl_customer', customerController.get);
+app.get('/api/tbl_customer/:id', customerController.getid);
 
 http.listen(1999,function(){
 	console.log("Connected & Listen to port 1999");

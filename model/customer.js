@@ -23,16 +23,24 @@ module.exports = {
 
 	},
 
+<<<<<<< HEAD
+	getid: function(no_ktp, callback){
+		var model = knex.select().table('tbl_customer')
+		.leftJoin('tbl_telepon', 'tbl_telepon.no_ktp', 'tbl_customer.no_ktp')
+		.whereRaw('tbl_customer.no_ktp = ?', [no_ktp])
+		.select(`tbl_customer.no_ktp`,`nama_customer`,`id_pegawai`)
+=======
 	getid: function(Id, callback){
 		var model = knex.select().table('tbl_pegawai')
-		.leftJoin('tbl_customer', 'tbl_pegawai.id', 'tbl_customer.id_pegawai')
-		.leftJoin('tbl_penyewaan', 'tbl_pegawai.id', 'tbl_penyewaan.id_pegawai')
-		.whereRaw('tbl_pegawai.id = ?', [Id])
-		.select(`tbl_pegawai.id`,`nama_pegawai`,`email_pegawai`,`password_pegawai`)
+		.leftJoin('tbl_telepon', 'tbl_telepon.no_ktp', 'tbl_customer.no_ktp')
+		.whereRaw('tbl_customer.no_ktp = ?', [Id])
+		.select(`tbl_customer.no_ktp`,`nama_customer`,`id_pegawai`);
+>>>>>>> ddb4892447ab177df21f3629dd53d38c2e6617d8
 		model.then(function (rows){
 			callback(null, rows);
 		}, function (err){
 			callback(err)
+
 		})
 		.catch(function (err){
 			callback(err)
@@ -41,15 +49,15 @@ module.exports = {
 	},
 
 	post: function(req, callback){
-		var Nama_pegawai = req.body.nama_pegawai;
-		var Email_pegawai = req.body.email_pegawai;
-		var Password_pegawai = req.body.password_pegawai;
+		var no_ktp = req.body.no_ktp;
+		var nama_customer = req.body.nama_customer;
+		var id_pegawai = req.body.id_pegawai;
 
 		var model = knex('tbl_pegawai')
 		.insert({
-			'nama_pegawai':Nama_pegawai,
-			'email_pegawai':Email_pegawai,
-			'password_pegawai':Password_pegawai
+			'no_ktp':no_ktp,
+			'nama_customer':nama_customer,
+			'id_pegawai':id_pegawai
 		})
 		.then(function (rows){
 			callback(null, rows);
