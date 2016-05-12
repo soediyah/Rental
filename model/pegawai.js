@@ -61,17 +61,16 @@ module.exports = {
 	},
 	
 	put: function(req, callback){
-		var id = req.params.id;
-		var nama_pegawai = req.body.nama_pegawai;
-		var email_pegawai = req.body.email_pegawai;
-		var password_pegawai = req.body.password_pegawai;
-		
+		var Id = req.params.id
+		var Nama_pegawai = req.body.nama_pegawai;
+		var Email_pegawai = req.body.email_pegawai;
+		var Password_pegawai = req.body.password_pegawai;
 		var model = knex('tbl_pegawai')
-        .where('id',id)
+        .where('id',Id)
         .update({
-           'nama_pegawai':nama_pegawai,
-			'email_pegawai':email_pegawai,
-			'password_pegawai':password_pegawai
+           'nama_pegawai': Nama_pegawai,
+			'email_pegawai':Email_pegawai,
+			'password_pegawai':Password_pegawai
       })
          .then(function (rows){
                  callback(null, rows);
@@ -82,12 +81,11 @@ module.exports = {
 
 	},
 
-	delete: function (req, callback){
-		var Id = req.params.body
+	delete: function (Id, callback){
    		var model = knex('tbl_pegawai')
-        .whereRaw("id = ?",[Id])
-        .delete()
-        model.then(function (rows){
+        .where('id' ,Id)
+        .del()
+        .then(function (rows){
                 callback(null, rows);
             })
         .catch(function (err){
