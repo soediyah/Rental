@@ -9,6 +9,7 @@ module.exports = {
 	get: 
 	function(req,res){
 		model.get(function (error,result){
+			console.log(error, result);
 			if(result.length == 0){
 				data["count"] = result.length;
 				data["status"] = "data kosong";
