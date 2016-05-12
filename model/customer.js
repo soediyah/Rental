@@ -12,7 +12,7 @@ var knex = require('knex')({
 module.exports = {
 	get: function(callback){
 		var model = knex.select().table('tbl_customer')
-		.leftJoin('tbl_telepon', 'tbl_telepon.no_ktp', 'tbl_customer.no_ktp')
+		.leftJoin('tbl_telepon', 'tbl_customer.no_ktp', 'tbl_telepon.no_ktp')
 		.select(`tbl_customer.no_ktp`,`nama_customer`,`id_pegawai`);
 		model.then(function (rows){
 			callback(null, rows);
@@ -23,19 +23,12 @@ module.exports = {
 
 	},
 
-<<<<<<< HEAD
-	getid: function(no_ktp, callback){
+	getid: function(No_ktp, callback){
 		var model = knex.select().table('tbl_customer')
-		.leftJoin('tbl_telepon', 'tbl_telepon.no_ktp', 'tbl_customer.no_ktp')
-		.whereRaw('tbl_customer.no_ktp = ?', [no_ktp])
-		.select(`tbl_customer.no_ktp`,`nama_customer`,`id_pegawai`)
-=======
-	getid: function(Id, callback){
-		var model = knex.select().table('tbl_pegawai')
-		.leftJoin('tbl_telepon', 'tbl_telepon.no_ktp', 'tbl_customer.no_ktp')
-		.whereRaw('tbl_customer.no_ktp = ?', [Id])
+		.leftJoin('tbl_telepon', 'tbl_customer.no_ktp', 'tbl_telepon.no_ktp')
+		.where('no_ktp', [No_ktp])
 		.select(`tbl_customer.no_ktp`,`nama_customer`,`id_pegawai`);
->>>>>>> ddb4892447ab177df21f3629dd53d38c2e6617d8
+
 		model.then(function (rows){
 			callback(null, rows);
 		}, function (err){
