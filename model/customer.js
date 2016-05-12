@@ -23,44 +23,13 @@ module.exports = {
 
 	},
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-	getid: function(No_ktp, callback){
-		var model = knex.select().table('tbl_customer')
-		.leftJoin('tbl_telepon', 'tbl_customer.no_ktp', 'tbl_telepon.no_ktp')
-		.where('no_ktp', [No_ktp])
-		.select(`tbl_customer.no_ktp`,`nama_customer`,`id_pegawai`);
-
-=======
-<<<<<<< HEAD
->>>>>>> 107a1fa426f83515562b32e1a9db0fce095224d3
-
-	getid: function(Id, callback){
-		var model = knex.select().table('tbl_pegawai')
-		.leftJoin('tbl_telepon', 'tbl_telepon.no_ktp', 'tbl_customer.no_ktp')
-		.whereRaw('tbl_customer.no_ktp = ?', [Id])
-		.select(`tbl_customer.no_ktp`,`nama_customer`,`id_pegawai`);
-
->>>>>>> 277bec1e9eb78dd438244e13042400bf067c15ed
 	getid: function(no_ktp, callback){
 		var model = knex.select().table('tbl_customer')
 		.leftJoin('tbl_telepon', 'tbl_customer.no_ktp', 'tbl_telepon.no_ktp')
 		.whereRaw('tbl_customer.no_ktp = ?', [no_ktp])
 		.select(`tbl_customer.no_ktp`,`nama_customer`,`id_pegawai`)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
->>>>>>> 8fa88edcd69090b0a5eea01ea2ee90fa7c96542d
->>>>>>> 9e12ca6522353b0c1d4800a4567ef16ff1c94835
->>>>>>> 107a1fa426f83515562b32e1a9db0fce095224d3
->>>>>>> 277bec1e9eb78dd438244e13042400bf067c15ed
-		model.then(function (rows){
+	model.then(function (rows){
 			callback(null, rows);
 		}, function (err){
 			callback(err)
