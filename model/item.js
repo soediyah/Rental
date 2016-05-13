@@ -74,6 +74,7 @@ module.exports = {
 		var model = knex('tbl_item')
         .where('id',Id)
         .update({
+        	'id':Id,
            'nama_item':nama_item,
 			'gambar_item':gambar_item,
 			'desc_item':desc_item,
