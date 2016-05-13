@@ -26,6 +26,7 @@ module.exports = {
 	getid: function(No_booking, callback){
 		var model = knex.select().table('tbl_pembayaran')
 		.leftJoin('tbl_pvot', 'tbl_pembayaran.no_booking', 'tbl_pvot.no_booking')
+		.leftJoin('tbl_pegawai', 'tbl_pembayaran.')
 		.whereRaw('tbl_pembayaran.no_booking = ?', [No_booking])
 		.select(`tbl_pembayaran.no_booking`,`harga_sewa`,`total_denda`,`tgl_pembayaran`,`id_pegawai`);
 		model.then(function (rows){
