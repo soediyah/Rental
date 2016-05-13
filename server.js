@@ -18,7 +18,7 @@ var customerController = require('./controller/customer_controller.js');
 var dendaController =  require('./controller/denda_controller.js');
 var itemController = require('./controller/item_controller.js');
 var kategoriController = require('./controller/kategori_controller.js');
-
+var teleponController = require('./controller/telepon_controller.js');
 app.get('/api',function(req,res){
 	res.send('Rental VPAS');
 });
@@ -59,6 +59,12 @@ app.post('/api/tbl_kategori', kategoriController.post);
 app.put('/api/tbl_kategori/:id', kategoriController.put);
 app.delete('/api/tbl_kategori/:id', kategoriController.delete);
 
+//tbl_telepon
+app.get('/api/tbl_telepon', teleponController.get);
+app.get('/api/tbl_telepon/:id', teleponController.getid);
+app.post('/api/tbl_telepon', teleponController.post);
+app.put('/api/tbl_telepon/:no_ktp', teleponController.put);
+app.delete('/api/tbl_telepon/:no_ktp', teleponController.delete);
 
 http.listen(1999,function(){
 	console.log("Connected & Listen to port 1999");
