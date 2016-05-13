@@ -12,8 +12,8 @@ var knex = require('knex')({
 module.exports = {
 	get: function(callback){
 		var model = knex.select().table('tbl_pembayaran')
-		.leftJoin('tbl_pvot', 'tbl_pembayaran.no_booking', 'tbl_pvot.no_booking')
-		.select(`tbl_pembayaran.no_booking`,`harga_sewa`,`total_denda`,`tgl_pembayaran`,`id_pegawai`);
+		.leftJoin('tbl_pvot', 'tbl_pembayaran.id', 'tbl_pvot.id_pembayaran')
+		.select(`tbl_pembayaran.id`,`harga_sewa`,`total_denda`,`tgl_pembayaran`,`id_pegawai`);
 		model.then(function (rows){
 			callback(null, rows);
 		})
@@ -25,10 +25,10 @@ module.exports = {
 
 	getid: function(No_booking, callback){
 		var model = knex.select().table('tbl_pembayaran')
-		.leftJoin('tbl_pvot', 'tbl_pembayaran.no_booking', 'tbl_pvot.no_booking')
+		.leftJoin('tbl_pvot', 'tbl_pembayaran.id', 'tbl_pvot.id_pembayaran')
 		.leftJoin('tbl_pegawai', 'tbl_pembayaran.')
-		.whereRaw('tbl_pembayaran.no_booking = ?', [No_booking])
-		.select(`tbl_pembayaran.no_booking`,`harga_sewa`,`total_denda`,`tgl_pembayaran`,`id_pegawai`);
+		.whereRaw('tbl_pembayaran.id = ?', [No_booking])
+		.select(`tbl_pembayaran.id`,`harga_sewa`,`total_denda`,`tgl_pembayaran`,`id_pegawai`);
 		model.then(function (rows){
 			callback(null, rows);
 		}, function (err){
@@ -45,13 +45,15 @@ module.exports = {
 		var Total_denda = req.body.total_denda;
 		var Tgl_pembayaran = req.body.tgl_pembayaran;
 		var Id_pegawai = req.body.id_pegawai;
+		var No_booking = req.body.no_booking;
 
 		var model = knex('tbl_pembayaran')
 		.insert({
 			'harga_sewa':Harga_sewa,
 			'total_denda':Total_denda,
 			'tgl_pembayaran':Tgl_pembayaran,
-			'id_pegawai':Id_pegawai
+			'id_pegawai':Id_pegawai,
+			'no_booking':No_booking
 		})
 		.then(function (rows){
 			callback(null, rows);
