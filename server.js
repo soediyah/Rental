@@ -16,6 +16,7 @@ app.use(function(req, res, next) {
 var pegawaiController = require('./controller/pegawai_controller.js');
 var customerController = require('./controller/customer_controller.js');
 var dendaController =  require('./controller/denda_controller.js');
+var pembayaranController = require('./controller/pembayaran_controller.js');
 var itemController = require('./controller/item_controller.js');
 var kategoriController = require('./controller/kategori_controller.js');
 var teleponController = require('./controller/telepon_controller.js');
@@ -43,6 +44,14 @@ app.get('/api/tbl_denda/:id', dendaController.getid);
 app.post('/api/tbl_denda', dendaController.post);
 app.put('/api/tbl_denda/:id', dendaController.put);
 app.delete('/api/tbl_denda/:id', dendaController.delete);
+
+
+//tbl_pembayaran
+app.get('/api/tbl_pembayaran', pembayaranController.get);
+app.get('/api/tbl_pembayaran/:no_booking', pembayaranController.getid);
+app.post('/api/tbl_pembayaran', pembayaranController.post);
+app.put('/api/tbl_pembayaran/:no_booking', pembayaranController.put);
+app.delete('/api/tbl_pembayaran/:no_booking', pembayaranController.delete);
 
 
 //tbl_item
