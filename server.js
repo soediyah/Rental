@@ -16,22 +16,12 @@ app.use(function(req, res, next) {
 var pegawaiController = require('./controller/pegawai_controller.js');
 var customerController = require('./controller/customer_controller.js');
 var dendaController =  require('./controller/denda_controller.js');
-<<<<<<< HEAD
-var pembayaranController = require('./controller/pembayaran_controller.js');
-var itemController = require('./controller/item_controller.js');
-var kategoriController = require('./controller/kategori_controller.js');
 var pvotController = require('./controller/pvot_controller.js');
-
-
-=======
-var itemController = require('./controller/item_controller.js');
-var kategoriController = require('./controller/kategori_controller.js');
 var alamatController = require('./controller/alamat_controller.js');
 var pembayaranController = require('./controller/pembayaran_controller.js');
 var itemController = require('./controller/item_controller.js');
 var kategoriController = require('./controller/kategori_controller.js');
 var teleponController = require('./controller/telepon_controller.js');
->>>>>>> cd6591d2f3c7d892c53e2518bba83b5d15184dec
 app.get('/api',function(req,res){
 	res.send('Rental VPAS');
 });
@@ -65,10 +55,7 @@ app.post('/api/tbl_denda', dendaController.post);
 app.put('/api/tbl_denda/:id', dendaController.put);
 app.delete('/api/tbl_denda/:id', dendaController.delete);
 
-<<<<<<< HEAD
-=======
 
->>>>>>> cd6591d2f3c7d892c53e2518bba83b5d15184dec
 //tbl_pembayaran
 app.get('/api/tbl_pembayaran', pembayaranController.get);
 app.get('/api/tbl_pembayaran/:no_booking', pembayaranController.getid);
@@ -76,10 +63,6 @@ app.post('/api/tbl_pembayaran', pembayaranController.post);
 app.put('/api/tbl_pembayaran/:no_booking', pembayaranController.put);
 app.delete('/api/tbl_pembayaran/:no_booking', pembayaranController.delete);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> cd6591d2f3c7d892c53e2518bba83b5d15184dec
 //tbl_item
 app.get('/api/tbl_item', itemController.get);
 app.get('/api/tbl_item/:id', itemController.getid)
@@ -93,9 +76,6 @@ app.get('/api/tbl_kategori/:id', kategoriController.getid);
 app.post('/api/tbl_kategori', kategoriController.post);
 app.put('/api/tbl_kategori/:id', kategoriController.put);
 app.delete('/api/tbl_kategori/:id', kategoriController.delete);
-<<<<<<< HEAD
- 
-=======
 
 //tbl_alamat
 app.get('/api/tbl_alamat', alamatController.get);
@@ -110,7 +90,6 @@ app.get('/api/tbl_telepon/:id', teleponController.getid);
 app.post('/api/tbl_telepon', teleponController.post);
 app.put('/api/tbl_telepon/:id', teleponController.put);
 app.delete('/api/tbl_telepon/:id', teleponController.delete);
->>>>>>> cd6591d2f3c7d892c53e2518bba83b5d15184dec
 
 http.listen(1999,function(){
 	console.log("Connected & Listen to port 1999");
