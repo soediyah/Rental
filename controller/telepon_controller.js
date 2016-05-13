@@ -1,4 +1,4 @@
-var model = require('../model/item.js');
+var model = require('../model/telepon.js');
 var data ={
 	"count" : 0,
 	"status" : "",

@@ -1,4 +1,4 @@
-var model = require('../model/item.js');
+var model = require('../model/pvot.js');
 var data ={
 	"count" : 0,
 	"status" : "",
@@ -44,6 +44,13 @@ module.exports = {
 	post: 
 	function (req,res) {
 		model.post(req, function (error,result){
+			if(error) {
+				console.error(error);
+				res.json({
+					error: error.message
+				})
+				return;
+			}
 			if(result.length == 0){
 				data["count"] = result.length;
 				data["status"] = "error";
@@ -97,5 +104,3 @@ module.exports = {
 
 
 }
-		
-		
