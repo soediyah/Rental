@@ -82,8 +82,8 @@ app.delete('/api/tbl_alamat/:id', alamatController.delete);
 app.get('/api/tbl_telepon', teleponController.get);
 app.get('/api/tbl_telepon/:id', teleponController.getid);
 app.post('/api/tbl_telepon', teleponController.post);
-app.put('/api/tbl_telepon/:no_ktp', teleponController.put);
-app.delete('/api/tbl_telepon/:no_ktp', teleponController.delete);
+app.put('/api/tbl_telepon/:id', teleponController.put);
+app.delete('/api/tbl_telepon/:id', teleponController.delete);
 
 http.listen(1999,function(){
 	console.log("Connected & Listen to port 1999");
