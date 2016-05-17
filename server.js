@@ -22,9 +22,18 @@ var pembayaranController = require('./controller/pembayaran_controller.js');
 var itemController = require('./controller/item_controller.js');
 var kategoriController = require('./controller/kategori_controller.js');
 var teleponController = require('./controller/telepon_controller.js');
+var penyewaanController = require('./controller/penyewaan_controller.js');
 app.get('/api',function(req,res){
 	res.send('Rental VPAS');
 });
+
+//tbl_penyewaan
+app.get('/api/tbl_penyewaan', penyewaanController.get);
+app.get('/api/tbl_penyewaan/:no_booking', penyewaanController.getid);
+app.post('/api/tbl_penyewaan', penyewaanController.post);
+app.put('/api/tbl_penyewaan/:no_booking', penyewaanController.put);
+app.delete('/api/tbl_penyewaan/:no_booking', penyewaanController.delete);
+
 
 //tbl_pvot
 app.get('/api/tbl_pvot', pvotController.get);
@@ -58,10 +67,10 @@ app.delete('/api/tbl_denda/:id', dendaController.delete);
 
 //tbl_pembayaran
 app.get('/api/tbl_pembayaran', pembayaranController.get);
-app.get('/api/tbl_pembayaran/:no_booking', pembayaranController.getid);
+app.get('/api/tbl_pembayaran/:id', pembayaranController.getid);
 app.post('/api/tbl_pembayaran', pembayaranController.post);
-app.put('/api/tbl_pembayaran/:no_booking', pembayaranController.put);
-app.delete('/api/tbl_pembayaran/:no_booking', pembayaranController.delete);
+app.put('/api/tbl_pembayaran/:id', pembayaranController.put);
+app.delete('/api/tbl_pembayaran/:id', pembayaranController.delete);
 
 //tbl_item
 app.get('/api/tbl_item', itemController.get);
