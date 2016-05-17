@@ -26,7 +26,7 @@ module.exports = {
 
 	getid:
 	function (req,res){
-		model.getid(req.params.no_booking, function (error,result){
+		model.getid(req.params.id, function (error,result){
 			if(result.length == 0){
 
 				data["count"] = result.length;
@@ -87,7 +87,7 @@ module.exports = {
 
 	delete: 
 	function (req,res) {
-		model.delete(req.params.no_booking, function (error,result){
+		model.delete(req.params.id, function (error,result){
 			if(result.length == 0){
 				data["count"] = result.length;
 				data["status"] = "error";
