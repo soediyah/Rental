@@ -1,0 +1,107 @@
+var model = require('../model/penyewaan.js');
+var data ={
+	"count" : 0,
+	"status" : "",
+	"detail" : ""
+};
+
+module.exports = {
+	get: 
+	function(req,res){
+		model.get(function (error,result){
+			console.log(error, result);
+			if(result.length == 0){
+				data["count"] = result.length;
+				data["status"] = "data kosong";
+				data["detail"] = error;
+			}
+			else{
+				data["count"] = result.length;
+				data["status"] = "success";
+				data["detail"] = result;
+			}
+			res.json(data);
+		});
+	},
+
+	getid:
+	function (req,res){
+		model.getid(req.params.no_booking, function (error,result){
+			if(result.length == 0){
+
+				data["count"] = result.length;
+				data["status"] = "error";
+				data["detail"] = error;
+			}
+			else{
+				data["count"] = result.length;
+				data["status"] = "success";
+				data["detail"] = result;
+			}
+			res.json(data);
+		});
+	},
+	post: 
+	function (req,res) {
+		model.post(req, function (error,result){
+			if(error) {
+				console.error(error);
+				res.json({
+					error: error.message
+				})
+				return;
+			}
+
+			if(result.length == 0){
+				data["count"] = result.length;
+				data["status"] = "error";
+				data["detail"] = error;
+			}
+			else{
+				data["count"] = result.length;
+				data["status"] = "success";
+				data["detail"] = result;
+			}
+			res.json(data);
+		});
+
+	},
+
+	put: 
+	function (req,res) {
+		model.put(req, function (error,result){
+			if(result.length == 0){
+				data["count"] = result.length;
+				data["status"] = "error";
+				data["detail"] = error;
+			}
+			else{
+				data["count"] = result.length;
+				data["status"] = "success";
+				data["detail"] = result;
+			}
+			res.json(data);
+		});
+
+	},
+
+	delete: 
+	function (req,res) {
+		model.delete(req.params.no_booking, function (error,result){
+			if(result.length == 0){
+				data["count"] = result.length;
+				data["status"] = "error";
+				data["detail"] = error;
+			}
+			else{
+				data["count"] = result.length;
+				data["status"] = "success";
+				data["detail"] = result;
+			}
+			res.json(data);
+		});
+
+	}
+
+
+}
