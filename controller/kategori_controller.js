@@ -10,6 +10,10 @@ module.exports = {
 	function(req,res){
 		model.get(function (error,result){
 			console.log(error, result);
+			if (error){
+				return res.json(error)
+
+			}
 			if(result.length == 0){
 				data["count"] = result.length;
 				data["status"] = "data kosong";
@@ -27,6 +31,11 @@ module.exports = {
 	getid:
 	function (req,res){
 		model.getid(req.params.id, function (error,result){
+				if (error){
+					console.log(error)
+				return res.json(error)
+
+			}
 			if(result.length == 0){
 
 				data["count"] = result.length;
