@@ -12,7 +12,6 @@ var knex = require('knex')({
 module.exports = {
 	get: function(callback){
 		var model = knex.select().table('tbl_kategori')
-		.leftJoin('tbl_item', 'tbl_kategori.id', 'tbl_item.id')
 		.select(`tbl_kategori.id`,`nama_kategori`,`gambar_kategori`);
 		model.then(function (rows){
 			callback(null, rows);
@@ -25,9 +24,8 @@ module.exports = {
 
 	getid: function(Id, callback){
 		var model = knex.select().table('tbl_kategori')
-		.leftJoin('tbl_item', 'tbl_kategori.id', 'tbl_item.id')
 		.whereRaw('tbl_kategori.id = ?', [Id])
-		.select(`tbl_kategori.id`,`nama_ketegori`,`gambar_kategori`)
+		.select(`tbl_kategori.id`,`tbl_kategori.nama_kategori`,`tbl_kategori.gambar_kategori`)
 		model.then(function (rows){
 			callback(null, rows);
 		}, function (err){
